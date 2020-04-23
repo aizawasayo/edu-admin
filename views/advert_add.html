@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<div class="container-fluid">
+    <div class="body advert">
+        <!-- 面包屑 -->
+        <ol class="breadcrumb">
+            <li><a href="javascript:;">广告管理</a></li>
+            <li class="active">添加广告</li>
+        </ol>
+        <div class="advert-add">
+            <form action="/advert/add" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">广告标题</label>
+                    <div class="col-md-5">
+                        <input type="text" name="title" class="form-control input-sm" placeholder="填写广告名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">图片</label>
+                    <div class="col-md-5">
+                        <input type="file" name="image" multiple="multiple" class="form-control input-sm" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">广告链接</label>
+                    <div class="col-md-5">
+                        <input type="text" name="link" class="form-control input-sm" placeholder="填写广告链接">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">开始时间</label>
+                    <div class="col-md-5">
+                        <input type="text" name="start_time" class="form-control input-sm" placeholder="选择开始时间">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">结束时间</label>
+                    <div class="col-md-5">
+                        <input type="text" name="end_time" class="form-control input-sm" placeholder="选择结束时间">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <input type="submit" class=" class=" btn btn-success btn-sm pull-right" value="保存">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+    $("form").on("submit", function (e) {
+        //return false
+        var fd = new FormData($(this)[0]);
+        $.ajax({
+            url: "/advert/add",
+            type: "POST",
+            data: fd,
+            processData: false, // 不处理数据
+            contentType: false, // 不设置内容类型
+            success: function (data) {
+                if (data.err_code === 0) {
+                    window.location.href = '/advert'
+                }
+            }
+        });
+        return false
+    })
+</script>
+
+{% endblock %}

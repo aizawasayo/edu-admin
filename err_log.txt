@@ -1,0 +1,9 @@
+
+    ====================================
+    错误名：Error
+    错误消息：ENOENT: no such file or directory, open 'fake.txt'
+    错误堆栈：Error: ENOENT: no such file or directory, open 'fake.txt'
+    错误时间：Sat Apr 11 2020 16:34:53 GMT+0800 (GMT+08:00)
+    ====================================
+
+
